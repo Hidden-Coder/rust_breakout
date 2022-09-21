@@ -1,6 +1,5 @@
 use macroquad::prelude::*;
 
-
 const BALL_SIZE: Vec2 = Vec2::from_array([40f32, 40f32]);
 const BALL_SPEED: f32 = 500f32;
 

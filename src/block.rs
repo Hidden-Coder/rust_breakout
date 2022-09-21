@@ -1,8 +1,6 @@
 use macroquad::prelude::*;
 
-
 pub const BLOCK_SIZE: Vec2 = Vec2::from_array([100f32, 40f32]);
-
 
 pub struct Block {
     pub rect: Rect,
