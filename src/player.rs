@@ -5,6 +5,7 @@ const PLAYER_SPEED: f32 = 700f32;
 
 pub struct Player {
     pub rect: Rect,
+    pub lives: u8,
 }
 
 impl Player {
@@ -16,6 +17,7 @@ impl Player {
                 PLAYER_SIZE.x,
                 PLAYER_SIZE.y,
             ),
+            lives: 3u8,
         }
     }
 
