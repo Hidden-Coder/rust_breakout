@@ -33,6 +33,8 @@ fn resolve_collision(a: &mut Rect, vel: &mut Vec2, b: &Rect) -> bool {
         } else {
             vel.y = vel.y.abs();
         }
+        vel.x -= distance_vec.normalize().x * 0.5f32;
+        *vel = vel.normalize();
     } else {
         a.x -= distance_signum.x * intersection.w;
         if distance_signum.x > 0f32 {
@@ -117,6 +119,8 @@ async fn main() {
     let mut blocks: Vec<Block> = Vec::new();
     let mut balls: Vec<Ball> = Vec::new();
     let mut game_state = GameState::START;
+    
+
     let font = load_ttf_font("src/res/DragonFruitDays.ttf").await.unwrap();
     setup_blocks(&mut blocks, 6, 6);
 
@@ -239,7 +243,7 @@ async fn main() {
                         ..Default::default()
                     },
                 );
-            }
+            },
         }
         next_frame().await;
     }
