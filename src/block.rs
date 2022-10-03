@@ -2,13 +2,19 @@ use macroquad::prelude::*;
 
 pub const BLOCK_SIZE: Vec2 = Vec2::from_array([100f32, 40f32]);
 
+pub enum BlockType{
+    Normal,
+    BallSpawner
+}
+
 pub struct Block {
     pub rect: Rect,
     pub lives: u8,
+    pub block_type: BlockType
 }
 
 impl Block {
-    pub fn new(pos: Vec2) -> Self {
+    pub fn new(pos: Vec2, block_type: BlockType) -> Self {
         Block {
             rect: Rect {
                 x: pos.x,
@@ -17,6 +23,7 @@ impl Block {
                 h: BLOCK_SIZE.y,
             },
             lives: 1u8,
+            block_type
         }
     }
 

@@ -25,11 +25,14 @@ impl Ball {
         self.rect.x += self.vel.x * dt * BALL_SPEED;
         self.rect.y += self.vel.y * dt * BALL_SPEED;
 
-        if self.rect.x < 0f32 || self.rect.x > screen_width() - self.rect.w {
-            self.vel.x *= -1f32
+        if self.rect.x < 0f32  {
+            self.vel.x = self.vel.x.abs();
+        }
+        else if self.rect.x > screen_width() - self.rect.w{
+            self.vel.x = -self.vel.x.abs();
         }
         if self.rect.y < 0f32 {
-            self.vel.y *= -1f32
+            self.vel.y = self.vel.y.abs();
         }
     }
 
