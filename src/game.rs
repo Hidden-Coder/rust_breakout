@@ -48,8 +48,6 @@ impl RustBreakout{
             } else {
                 vel.y = vel.y.abs();
             }
-            vel.x -= distance_vec.normalize().x * 0.5f32;
-            *vel = vel.normalize();
         } else {
             a.x -= distance_signum.x * intersection.w;
             if distance_signum.x > 0f32 {
@@ -178,7 +176,7 @@ impl RustBreakout{
                 for ball in self.balls.iter_mut() {
                     ball.update(get_frame_time());
                     ball.draw();
-                    RustBreakout::resolve_collision(&mut ball.rect, &mut ball.vel, &self.player.rect);
+                    self.player.resolve_collision(ball);
                     for block in self.blocks.iter_mut() {
                         if RustBreakout::resolve_collision(&mut ball.rect, &mut ball.vel, &block.rect) {
                             if block.lives > 0 {

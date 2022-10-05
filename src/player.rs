@@ -1,5 +1,7 @@
 use macroquad::prelude::*;
 
+use crate::ball::Ball;
+
 const PLAYER_SIZE: Vec2 = Vec2::from_array([150f32, 40f32]);
 const PLAYER_SPEED: f32 = 700f32;
 
@@ -42,5 +44,35 @@ impl Player {
 
     pub fn draw(&self) {
         draw_rectangle(self.rect.x, self.rect.y, self.rect.w, self.rect.h, DARKGRAY);
+    }
+
+
+    pub fn resolve_collision(&mut self, ball: &mut Ball) -> bool {
+        let intersection = match self.rect.intersect(ball.rect){
+            Some(intersection) => intersection,
+            None => return false
+        };
+        let self_center = self.rect.center();
+        let ball_center = ball.rect.center();
+        let distance_vec = self_center - ball_center;
+        let distance_signum  = distance_vec.signum();
+        if intersection.w > intersection.h {
+            ball.rect.y -= distance_signum.y * intersection.h;
+            if distance_signum.y > 0f32{
+                ball.vel.y = -ball.vel.y.abs();
+            } else {
+                ball.vel.y = ball.vel.y.abs();
+            }
+            ball.vel.x -= distance_vec.normalize().x * 0.5f32;
+            ball.vel = ball.vel.normalize();
+        } else {
+            ball.rect.x -= distance_signum.x * intersection.w;
+            if distance_signum.x > 0f32 {
+                ball.vel.x = -ball.vel.x.abs();
+            } else {
+                ball.vel.x = ball.vel.x.abs();
+            }
+        }
+        return true;
     }
 }
