@@ -3,6 +3,9 @@ use macroquad::prelude::*;
 const BALL_SIZE: Vec2 = Vec2::from_array([40f32, 40f32]);
 const BALL_SPEED: f32 = 500f32;
 
+/**
+ * Struct that holds the ball data
+ */
 pub struct Ball {
     pub rect: Rect,
     pub vel: Vec2,
@@ -21,6 +24,9 @@ impl Ball {
         }
     }
 
+    /**
+     * Called every frame to update the ball position
+     */
     pub fn update(&mut self, dt: f32) {
         self.rect.x += self.vel.x * dt * BALL_SPEED;
         self.rect.y += self.vel.y * dt * BALL_SPEED;
@@ -36,6 +42,9 @@ impl Ball {
         }
     }
 
+    /**
+     * Called every draw frame to draw the ball to the screen
+     */
     pub fn draw(&self) {
         draw_rectangle(self.rect.x, self.rect.y, self.rect.w, self.rect.h, YELLOW);
     }

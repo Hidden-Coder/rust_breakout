@@ -2,11 +2,17 @@ use macroquad::prelude::*;
 
 pub const BLOCK_SIZE: Vec2 = Vec2::from_array([100f32, 40f32]);
 
+/**
+ * Enum for the block type
+ */
 pub enum BlockType{
     Normal,
     BallSpawner
 }
 
+/**
+ * Struct that holds the block data
+ */
 pub struct Block {
     pub rect: Rect,
     pub lives: u8,
@@ -27,6 +33,9 @@ impl Block {
         }
     }
 
+    /**
+     * Called every draw frame to draw the block to the screen
+     */
     pub fn draw(&self) {
         let color = match self.lives {
             3 => DARKBROWN,

@@ -5,6 +5,9 @@ use crate::block::BlockType;
 use crate::player::Player;
 use macroquad::prelude::*;
 
+/**
+ * Enum for the game state
+ */
 enum GameState {
     START,
     GAME,
@@ -12,6 +15,9 @@ enum GameState {
     DEAD,
 }
 
+/**
+ * Struct that hold the game relevant data
+ */
 pub struct RustBreakout{
     state: GameState,
     player: Player,
@@ -100,6 +106,9 @@ impl RustBreakout{
         self.state = GameState::START;
     }
 
+    /**
+     * Eliminates balls that are out of bounds and decrements the player lives
+     */
     fn eliminate_balls(&mut self) {
         let balls_before_remove = self.balls.len();
         self.balls.retain(|ball| ball.rect.y < screen_height() - 50f32);
@@ -112,6 +121,9 @@ impl RustBreakout{
         }
     }
 
+    /**
+     * Draws the lives of the player to the screen
+     */
     fn draw_lives(&mut self) {
         let text = format!("Lives: {}", self.player.lives);
         draw_text_ex(
@@ -127,6 +139,9 @@ impl RustBreakout{
         );
     }
 
+    /**
+     * Called every frame to handle the game logic
+     */
     pub fn handle_frame(&mut self){
         match self.state {
             GameState::START => {
