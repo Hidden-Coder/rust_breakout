@@ -7,6 +7,9 @@ use ball::Ball;
 use block::{Block, BLOCK_SIZE};
 use macroquad::prelude::*;
 
+/**
+ * Window configuration
+ */
 fn window_conf() -> Conf {
         Conf{
             window_resizable: false,
@@ -16,6 +19,9 @@ fn window_conf() -> Conf {
         }
 }
 
+/**
+ * Entry point for the game
+ */
 #[macroquad::main(window_conf)]
 async fn main() {
     let font = load_ttf_font("src/res/DragonFruitDays.ttf").await.unwrap();

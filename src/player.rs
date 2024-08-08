@@ -23,6 +23,9 @@ impl Player {
         }
     }
 
+    /**
+     * Called every frame to update the player position
+     */
     pub fn update(&mut self, dt: f32) {
         let mut x_move = 0f32;
         if is_key_down(KeyCode::D) {
@@ -42,11 +45,17 @@ impl Player {
         }
     }
 
+    /**
+     * Called every draw frame to draw the player to the screen
+     */
     pub fn draw(&self) {
         draw_rectangle(self.rect.x, self.rect.y, self.rect.w, self.rect.h, DARKGRAY);
     }
 
 
+    /**
+     * Called every frame to detect collision and resolve it
+     */
     pub fn resolve_collision(&mut self, ball: &mut Ball) -> bool {
         let intersection = match self.rect.intersect(ball.rect){
             Some(intersection) => intersection,
