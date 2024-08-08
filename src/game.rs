@@ -218,6 +218,12 @@ impl RustBreakout{
                 if self.blocks.is_empty() {
                     self.state = GameState::WIN;
                 }
+                if self.balls.is_empty() && self.player.lives > 0 {
+                    self.balls.push(Ball::new(vec2(
+                        self.player.rect.x + self.player.rect.w * 0.5f32,
+                        self.player.rect.y - 100f32,
+                    )));
+                }
             },
             GameState::WIN => {
                 if is_key_pressed(KeyCode::Space) {

@@ -20,7 +20,7 @@ impl Ball {
                 w: BALL_SIZE.x,
                 h: BALL_SIZE.y,
             },
-            vel: vec2(rand::gen_range(-1f32, 1f32), 1f32).normalize(),
+            vel: -vec2(rand::gen_range(-1f32, 1f32), 1f32).normalize(),
         }
     }
 
